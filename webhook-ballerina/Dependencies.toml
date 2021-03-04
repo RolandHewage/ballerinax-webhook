@@ -1,0 +1,14 @@
+[[dependency]]
+org = "ballerina"
+name = "log"
+version = "@stdlib.log.version@"
+
+[[dependency]]
+org = "ballerina"
+name = "http"
+version = "@stdlib.http.version@"
+
+[[dependency]]
+org = "ballerina"
+name = "websub"
+version = "@stdlib.websub.version@"
