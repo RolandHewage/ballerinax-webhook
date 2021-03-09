@@ -16,16 +16,13 @@ import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 
 public class WebhookNativeOperationHandler {
-    public static void printMessage() {
-        System.out.println("This is a message from [Ballerina] to [Java]");
+    public static Object callOnStartupMethod(Environment env, BObject bWebhookService, BMap<BString, Object> message) {
+        return invokeRemoteFunction(env, bWebhookService, message, "callOnStartupMethod", "onStartup");
     }
-    // public static Object callOnStartupMethod(Environment env, BObject bWebhookService, BMap<BString, Object> message) {
-    //     return invokeRemoteFunction(env, bWebhookService, message, "callOnStartupMethod", "onStartup");
-    // }
 
-    // public static Object callOnEventMethod(Environment env, BObject bWebhookService, BMap<BString, Object> message) {
-    //     return invokeRemoteFunction(env, bWebhookService, message, "callOnEventMethod", "onEvent");
-    // }
+    public static Object callOnEventMethod(Environment env, BObject bWebhookService, BMap<BString, Object> message) {
+        return invokeRemoteFunction(env, bWebhookService, message, "callOnEventMethod", "onEvent");
+    }
 
     private static Object invokeRemoteFunction(Environment env, BObject bWebhookService, BMap<BString, Object> message,
                                                String parentFunctionName, String remoteFunctionName) {

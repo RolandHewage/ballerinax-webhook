@@ -1,14 +1,14 @@
 [[dependency]]
 org = "ballerina"
 name = "log"
-version = "@stdlib.log.version@"
+version = "1.1.0-alpha4"
 
 [[dependency]]
 org = "ballerina"
 name = "http"
-version = "@stdlib.http.version@"
+version = "1.1.0-alpha4"
 
 [[dependency]]
 org = "ballerina"
 name = "websub"
-version = "@stdlib.websub.version@"
+version = "1.2.0-alpha4"
