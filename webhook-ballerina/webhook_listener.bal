@@ -1,6 +1,5 @@
 import ballerina/websub;
 import ballerina/http;
-// import ballerina/log;
 
 public class Listener {
     private websub:Listener subscriberListener;
@@ -36,4 +35,9 @@ public class Listener {
     public isolated function immediateStop() returns error? {
         return self.subscriberListener.immediateStop();
     }
+}
+
+isolated function retrieveSubscriberServiceAnnotations(SimpleWebhookService serviceType) returns websub:SubscriberServiceConfiguration? {
+    typedesc<any> serviceTypedesc = typeof serviceType;
+    return serviceTypedesc.@websub:SubscriberServiceConfig;
 }
