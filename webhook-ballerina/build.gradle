@@ -8,7 +8,7 @@ import org.apache.tools.ant.taskdefs.condition.Os
 
 description = 'Ballerinax - Ballerina based Webhook'
 
-def packageName = "webhook_ballerina"
+def packageName = "webhook-ballerina"
 def packageOrg = "ayeshalm"
 def snapshotVersion = "-SNAPSHOT"
 def tomlVersion = project.version.replace("${snapshotVersion}", "")
@@ -143,9 +143,9 @@ task initializeVariables {
 
 
     gradle.taskGraph.whenReady { graph ->
-        if (graph.hasTask(":${packageName}-ballerina:build") || 
-                graph.hasTask(":${packageName}-ballerina:publish") ||
-                graph.hasTask(":${packageName}-ballerina:publishToMavenLocal")) {
+        if (graph.hasTask(":${packageName}:build") || 
+                graph.hasTask(":${packageName}:publish") ||
+                graph.hasTask(":${packageName}:publishToMavenLocal")) {
             ballerinaTest.enabled = false
         } else {
             ballerinaTest.enabled = true
