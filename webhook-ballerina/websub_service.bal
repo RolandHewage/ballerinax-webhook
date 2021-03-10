@@ -14,18 +14,19 @@ service class WebSubService {
                         returns websub:Acknowledgement|websub:SubscriptionDeletedError? {
         log:print("onEventNotification invoked ", contentDistributionMessage = event);
         if (event.content is json) {
-            string eventType = <string>event.content["eventType"];
-            json eventData = <json>event.content["eventData"];
+            Payload payload = checkpanic event.content.cloneWithType(Payload);
+            string eventType = payload["eventType"];
+            json eventData = payload["eventData"];
             match (eventType) {
                 "start" => {
-                    StartupMessage message = check eventData.cloneWithType(StartupMessage);
+                    StartupMessage message = checkpanic eventData.cloneWithType(StartupMessage);
                     var response = callOnStartupMethod(self.webhookService, message);
                     if (response is StartupError) {
                         return error websub:SubscriptionDeletedError(response.message());
                     }
                 }
                 "notify" => {
-                    EventNotification message = check eventData.cloneWithType(EventNotification);
+                    EventNotification message = checkpanic eventData.cloneWithType(EventNotification);
                     var response = callOnEventMethod(self.webhookService, message);
                 }
                 _ => {}

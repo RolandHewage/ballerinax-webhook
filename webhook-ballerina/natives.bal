@@ -6,6 +6,6 @@ isolated function callOnStartupMethod(SimpleWebhookService webhookService, Start
 } external;
 
 isolated function callOnEventMethod(SimpleWebhookService webhookService, EventNotification msg) 
-                                returns Acknowledgement = @java:Method {
+                                returns Acknowledgement? = @java:Method {
     'class: "io.ballerinax.webhook.WebhookNativeOperationHandler"
 } external;

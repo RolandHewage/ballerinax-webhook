@@ -14,7 +14,7 @@ service /subscriber on webhookListener {
         return {};
     }
     
-    remote function onEvent(EventNotification message) returns Acknowledgement {
+    remote function onEvent(EventNotification message) returns Acknowledgement? {
         log:print("Received event-notification-message ", notificationMsg = message);
         return {};
     }
@@ -23,15 +23,29 @@ service /subscriber on webhookListener {
 http:Client httpClient = checkpanic new("http://localhost:9090/subscriber");
 
 @test:Config {}
-function testOnEventNotificationSuccess() returns @tainted error? {
+function testStartupMessage() returns @tainted error? {
     http:Request request = new;
-    json payload =  {"action": "publish", "mode": "remote-hub"};
+    json payload =  {"eventType": "start", "eventData" : { "hubName": "hub1", "subscriberId": "sub1" } };
     request.setPayload(payload);
 
     var response = check httpClient->post("/", request);
     if (response is http:Response) {
         test:assertEquals(response.statusCode, 202);
     } else {
-        test:assertFail("UnsubscriptionIntentVerification test failed");
+        test:assertFail("Webhook startup test failed");
+    }
+}
+
+@test:Config {}
+function testEventNotificationMessage() returns @tainted error? {
+    http:Request request = new;
+    json payload =  {"eventType": "notify", "eventData" : { "hubName": "hub1", "eventId": "event1", "message": "This is a simpl notification" } };
+    request.setPayload(payload);
+
+    var response = check httpClient->post("/", request);
+    if (response is http:Response) {
+        test:assertEquals(response.statusCode, 202);
+    } else {
+        test:assertFail("Webhook event notification test failed");
     }
 }

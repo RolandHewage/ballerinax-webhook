@@ -142,27 +142,27 @@ task initializeVariables {
     }
 
 
-    // gradle.taskGraph.whenReady { graph ->
-    //     if (graph.hasTask(":${packageName}-ballerina:build") || 
-    //             graph.hasTask(":${packageName}-ballerina:publish") ||
-    //             graph.hasTask(":${packageName}-ballerina:publishToMavenLocal")) {
-    //         ballerinaTest.enabled = false
-    //     } else {
-    //         ballerinaTest.enabled = true
-    //     }
+    gradle.taskGraph.whenReady { graph ->
+        if (graph.hasTask(":${packageName}-ballerina:build") || 
+                graph.hasTask(":${packageName}-ballerina:publish") ||
+                graph.hasTask(":${packageName}-ballerina:publishToMavenLocal")) {
+            ballerinaTest.enabled = false
+        } else {
+            ballerinaTest.enabled = true
+        }
 
-    //     if (graph.hasTask(":${packageName}-ballerina:test")) {
-    //         testParams = "--code-coverage --includes=*"
-    //     } else {
-    //         testParams = "--skip-tests"
-    //     }
+        // if (graph.hasTask(":${packageName}-ballerina:test")) {
+        //     testParams = "--code-coverage --includes=*"
+        // } else {
+        //     testParams = "--skip-tests"
+        // }
 
-    //     if (graph.hasTask(":${packageName}-ballerina:publish")) {
-    //         ballerinaPublish.enabled = true
-    //     } else {
-    //         ballerinaPublish.enabled = false
-    //     }
-    // }
+        // if (graph.hasTask(":${packageName}-ballerina:publish")) {
+        //     ballerinaPublish.enabled = true
+        // } else {
+        //     ballerinaPublish.enabled = false
+        // }
+    }
 }
 
 task copyStdlibs(type: Copy) {

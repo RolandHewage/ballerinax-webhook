@@ -1,3 +1,7 @@
+public type Payload record {|
+    string eventType;
+    json eventData;
+|};
 public type StartupMessage record {
     string hubName;
     string subscriberId;

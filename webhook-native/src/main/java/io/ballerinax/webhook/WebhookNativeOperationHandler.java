@@ -22,7 +22,7 @@ public class WebhookNativeOperationHandler {
 
     public static Object callOnEventMethod(Environment env, BObject bWebhookService, BMap<BString, Object> message) {
         return invokeRemoteFunction(env, bWebhookService, message, "callOnEventMethod", "onEvent");
-    }
+    }  
 
     private static Object invokeRemoteFunction(Environment env, BObject bWebhookService, BMap<BString, Object> message,
                                                String parentFunctionName, String remoteFunctionName) {
