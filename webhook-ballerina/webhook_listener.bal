@@ -10,7 +10,7 @@ public class Listener {
         self.subscriberService = ();
     }
 
-    public function attach(SimpleWebhookService s, string[]|string? name = ()) returns error? {
+    public function attach(GithubWebhookService s, string[]|string? name = ()) returns error? {
         var configuration = retrieveSubscriberServiceAnnotations(s);
         if (configuration is websub:SubscriberServiceConfiguration) {
             self.subscriberService = new WebSubService(s);
@@ -20,7 +20,7 @@ public class Listener {
         }
     }
 
-    public isolated function detach(SimpleWebhookService s) returns error? {
+    public isolated function detach(GithubWebhookService s) returns error? {
         check self.subscriberListener.detach(<WebSubService>self.subscriberService);
     }
 
@@ -37,7 +37,7 @@ public class Listener {
     }
 }
 
-isolated function retrieveSubscriberServiceAnnotations(SimpleWebhookService serviceType) returns websub:SubscriberServiceConfiguration? {
+isolated function retrieveSubscriberServiceAnnotations(GithubWebhookService serviceType) returns websub:SubscriberServiceConfiguration? {
     typedesc<any> serviceTypedesc = typeof serviceType;
     return serviceTypedesc.@websub:SubscriberServiceConfig;
 }
