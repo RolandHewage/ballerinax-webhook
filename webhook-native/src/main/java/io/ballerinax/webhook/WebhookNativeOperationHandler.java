@@ -44,8 +44,7 @@ public class WebhookNativeOperationHandler {
             @Override
             public void notifyFailure(BError bError) {
                 BString errorMessage = fromString("service method invocation failed: " + bError.getErrorMessage());
-                BError invocationError = ErrorCreator.createError(module, "ServiceExecutionError", 
-                                                    errorMessage, bError, null);
+                BError invocationError = ErrorCreator.createError(errorMessage, bError);
                 balFuture.complete(invocationError);
             }
         }, args);
