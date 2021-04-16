@@ -9,3 +9,18 @@ isolated function callOnEventMethod(SimpleWebhookService webhookService, EventNo
                                 returns Acknowledgement? = @java:Method {
     'class: "io.ballerinax.webhook.WebhookNativeOperationHandler"
 } external;
+
+isolated function callOnEditMethod(SimpleWebhookService webhookService, EventNotification1 msg) 
+                                returns Acknowledgement? = @java:Method {
+    'class: "io.ballerinax.webhook.WebhookNativeOperationHandler"
+} external;
+
+isolated function callOnAppendRowMethod(SimpleWebhookService webhookService, EditEventInfo msg) 
+                                returns Acknowledgement? = @java:Method {
+    'class: "io.ballerinax.webhook.WebhookNativeOperationHandler"
+} external;
+
+isolated function callOnUpdateRowMethod(SimpleWebhookService webhookService, EditEventInfo msg) 
+                                returns Acknowledgement? = @java:Method {
+    'class: "io.ballerinax.webhook.WebhookNativeOperationHandler"
+} external;

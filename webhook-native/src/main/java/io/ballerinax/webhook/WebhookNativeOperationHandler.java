@@ -28,6 +28,18 @@ public class WebhookNativeOperationHandler {
         return invokeRemoteFunction(env, bWebhookService, message, "callOnEventMethod", "onEvent");
     }  
 
+    public static Object callOnEditMethod(Environment env, BObject bWebhookService, BMap<BString, Object> message) {
+        return invokeRemoteFunction(env, bWebhookService, message, "callOnEditMethod", "onEdit");
+    }  
+
+    public static Object callOnAppendRowMethod(Environment env, BObject bWebhookService, BMap<BString, Object> message) {
+        return invokeRemoteFunction(env, bWebhookService, message, "callOnAppendRowMethod", "onAppendRow");
+    }
+
+    public static Object callOnUpdateRowMethod(Environment env, BObject bWebhookService, BMap<BString, Object> message) {
+        return invokeRemoteFunction(env, bWebhookService, message, "callOnUpdateRowMethod", "onUpdateRow");
+    } 
+
     private static Object invokeRemoteFunction(Environment env, BObject bWebhookService, BMap<BString, Object> message,
                                                String parentFunctionName, String remoteFunctionName) {
         Future balFuture = env.markAsync();

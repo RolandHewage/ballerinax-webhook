@@ -1,0 +1,7 @@
+[roland.webhook_ballerina]
+callbackURL = "https://rolywso2.000webhostapp.com/subscriber"
+clientId = "395766790318-ol5amua6akv8ol7auv2pf1oposl5k9uk.apps.googleusercontent.com"
+clientSecret = "aXbjT8-kcGfT9Mkwr3R_dFRn"
+refreshUrl = "https://www.googleapis.com/oauth2/v3/token"
+refreshToken = "1//04sYc48pxpf6bCgYIARAAGAQSNwF-L9IrWceTUycxSnnOVgIZsnWqGJt3j2K4x_QuLLW4EXiJ79Qd9Xuv0rSnRsBs8zoRjkZGhjE"
+port = 9090
